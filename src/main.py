@@ -1,12 +1,19 @@
-from flask import Flask
+from flask import Flask, request
+from bot import FrescoBot
 
 
 app = Flask(__name__)
+bot = FrescoBot("YOUR_TOKEN_HERE", "YOUR_CONFIRMATION_CODE_HERE")
 
 
-@app.route("/")
+@app.route("/", methods=["POST"])
 def index():
-    return "Hello, World!\n\t© Jacque Fresco"
+    data = request.get_json(force=True, silent=True)
+
+    if not data or 'type' not in data:
+        return 'fail'
+
+    return bot.handle_callback(data)
 
 
 if __name__ == "__main__":
