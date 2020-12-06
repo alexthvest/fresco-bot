@@ -1,4 +1,5 @@
 from bot import FrescoBot
+from fresko import create_quote_image
 from config import TOKEN, CONFIRMATION_CODE, SECRET_KEY
 from flask import Flask, request
 

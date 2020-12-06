@@ -4,8 +4,6 @@ from dotenv import load_dotenv
 # Loads .env file
 load_dotenv()
 
-print(os.getenv("TOKEN"))
-
 # Config
 TOKEN = os.getenv("TOKEN")
 
