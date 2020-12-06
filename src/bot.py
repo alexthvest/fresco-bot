@@ -21,21 +21,21 @@ class FrescoBot:
         )
 
     def handle_callback(self, data):
-        if data['type'] == 'confirmation':
+        if data["type"] == "confirmation":
             return self.__confirmation_code
 
-        if data['type'] == 'message_new':
+        if data["type"] == "message_new":
             self.handle_message(data)
-            return 'ok'
+            return "ok"
 
-        return 'ok'
+        return "ok"
 
     def handle_message(self, data):
-        self.__messages.append(data['object']['text'])
+        self.__messages.append(data["object"]["text"])
 
         if len(self.__messages) == 20:
             message = random.choice(self.__messages)
             message = f"{message} © Жак Фреско"
 
-            self.send_message(data['object']['peer_id'], message)
+            self.send_message(data["object"]["peer_id"], message)
             self.__messages = []
