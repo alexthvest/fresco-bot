@@ -31,11 +31,14 @@ class FrescoBot:
         return "ok"
 
     def handle_message(self, data):
-        self.__messages.append(data["object"]["text"])
+        message = data["object"]["message"]
 
-        if len(self.__messages) == 20:
-            message = random.choice(self.__messages)
-            message = f"{message} © Жак Фреско"
+        if "text" in message:
+            self.__messages.append(message["text"])
 
-            self.send_message(data["object"]["peer_id"], message)
+        if len(self.__messages) == 5:
+            text = random.choice(self.__messages)
+            text = f"{text} © Жак Фреско"
+
+            self.send_message(message["peer_id"], text)
             self.__messages = []

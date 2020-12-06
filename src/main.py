@@ -7,8 +7,13 @@ app = Flask(__name__)
 bot = FrescoBot(TOKEN, CONFIRMATION_CODE)
 
 
-@app.route("/", methods=["POST"])
+@app.route("/", methods=["GET"])
 def index():
+    return "Жак Фреско Бот"
+
+
+@app.route("/bot", methods=["POST"])
+def bot_callback():
     data = request.get_json(force=True, silent=True)
 
     if not data or "type" not in data:
