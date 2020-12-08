@@ -24,5 +24,8 @@ def create_quote_image(quote):
         text_y += font_height
 
     file = BytesIO()
+
     image.save(file, format="PNG")
+    file.seek(0)
+
     return file

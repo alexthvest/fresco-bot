@@ -24,9 +24,7 @@ class FrescoBot:
 
     def upload_photo(self, file, peer_id):
         upload = vk_api.VkUpload(self.__vk_session)
-        photo = upload.photo_messages(photos=[file], peer_id=peer_id)[0]
-
-        # TODO: Fix [100] photos_list is invalid
+        photo = upload.photo_messages(photos=file, peer_id=peer_id)[0]
 
         return f"photo{photo['owner_id']}_{photo['id']}"
 
@@ -46,7 +44,7 @@ class FrescoBot:
         if "text" in message:
             self.__messages.append(message["text"])
 
-        if len(self.__messages) == 5:
+        if len(self.__messages) == 20:
             quote = random.choice(self.__messages)
 
             image = create_quote_image(quote)
